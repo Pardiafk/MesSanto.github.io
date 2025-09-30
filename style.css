@@ -1,0 +1,433 @@
+/* ===== PALETA SÓLIDA Y NATURAL ===== */
+:root {
+  --solid-pink: #FFB6C1;         /* ROSADO SÓLIDO */
+  --deep-red: #8B0000;           /* Rojo profundo */
+  --crimson: #DC143C;            /* Rojo carmesí */
+  --black: #000000;              /* Negro */
+  --white: #FFFFFF;              /* Blanco */
+  --text-dark: #2F2F2F;          /* Texto oscuro */
+  --text-soft: #8B4B6B;          /* Texto suave */
+  --gold: #DAA520;               /* Dorado */
+  --purple: #9370DB;             /* Morado */
+  --olive: #808000;              /* Verde olivo */
+}
+
+/* Reset y configuración base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; font-family: 'Georgia', 'Times New Roman', serif; }
+
+body {
+  background: var(--solid-pink);
+  color: var(--text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Decoración sutil para llenar la página */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 30%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 40%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===== LAYOUT PRINCIPAL ===== */
+.page {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px 15px 60px 15px;
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+}
+
+/* ===== FECHA ARRIBA A LA IZQUIERDA ===== */
+.date-container {
+  position: fixed;
+  top: 15px; left: 15px;
+  background: rgba(255, 182, 193, 0.9);
+  padding: 8px 12px;
+  border-radius: 15px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+}
+.today { color: var(--text-dark); font-size: 0.9rem; font-weight: 600; font-style: italic; }
+
+/* ===== HERO SECTION - TÍTULO PRINCIPAL EN ROJO ===== */
+.hero {
+  text-align: center;
+  margin: 80px 0 60px 0;
+  padding: 0;
+  background: none; border: none; box-shadow: none;
+}
+.love-title {
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  font-weight: bold;
+  color: #DC143C !important;
+  margin-bottom: 25px;
+  text-shadow: 3px 3px 6px rgba(220, 20, 60, 0.3);
+  letter-spacing: 2px;
+  font-family: 'Georgia', serif;
+  line-height: 1.1;
+  background: none; border: none; padding: 0;
+}
+.tagline {
+  display: block;
+  color: #8B0000;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 50px;
+  font-style: italic;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  background: none; border: none; padding: 0;
+}
+
+/* ===== MENSAJE DEL DÍA ===== */
+.message {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 35px 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 182, 193, 0.6);
+  margin-bottom: 50px;
+  max-width: 800px;
+  margin-left: auto; margin-right: auto;
+  backdrop-filter: blur(10px);
+}
+.day-title {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: #E91E63;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  text-shadow: 1px 1px 2px rgba(233, 30, 99, 0.3);
+}
+.message-text {
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+  line-height: 1.8;
+  color: var(--text-dark);
+  text-align: justify;
+  font-family: 'Georgia', serif;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* Primera letra con colores */
+.message-text::first-letter {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #DC143C;
+  float: left;
+  line-height: 0.8;
+  margin-right: 8px;
+  margin-top: 3px;
+  text-shadow: 1px 1px 2px rgba(220, 20, 60, 0.4);
+  width: 1.2em;
+  text-align: center;
+}
+
+/* ===== TEMAS POR DÍA - COLORES EN LETRAS ===== */
+.theme-red .love-title { color: #DC143C !important; }
+.theme-red .day-title { color: #8B0000; }
+.theme-red .message-text::first-letter { color: #DC143C; }
+
+.theme-blue .love-title { color: #DC143C !important; }
+.theme-blue .day-title { color: #4169E1; }
+.theme-blue .message-text::first-letter { color: #4169E1; }
+
+.theme-purple .love-title { color: #DC143C !important; }
+.theme-purple .day-title { color: #9370DB; }
+.theme-purple .message-text::first-letter { color: #9370DB; }
+
+.theme-olive .love-title { color: #DC143C !important; }
+.theme-olive .day-title { color: #808000; }
+.theme-olive .message-text::first-letter { color: #808000; }
+
+/* ===== RESPONSIVE PARA MÓVIL ===== */
+@media (max-width: 768px) {
+  .page { padding: 15px 10px 40px 10px; }
+  .hero { margin: 60px 0 40px 0; }
+  .love-title { font-size: clamp(2.2rem, 10vw, 3.5rem); letter-spacing: 1px; }
+  .day-title { font-size: clamp(1.4rem, 5vw, 1.8rem); margin-bottom: 20px; }
+  .message-text { font-size: clamp(1rem, 4vw, 1.2rem); }
+  .message { padding: 25px 20px; margin-bottom: 40px; }
+  .date-container { top: 10px; left: 10px; padding: 6px 10px; }
+  .today { font-size: 0.8rem; }
+  .tagline { font-size: 1.1rem; margin-bottom: 40px; }
+}
+
+@media (max-width: 480px) {
+  .hero { margin: 50px 0 30px 0; }
+  .love-title { font-size: clamp(1.8rem, 12vw, 2.8rem); letter-spacing: 0.5px; }
+  .message-text::first-letter { font-size: 2.5rem; margin-right: 6px; }
+  .message { padding: 20px 15px; margin-bottom: 30px; }
+  .tagline { font-size: 1rem; margin-bottom: 35px; }
+}
+
+/* las imágenes se pueden clicar (no más bloqueo) */
+.decorative-images{
+  position: relative;
+  width: 100%;
+  height: 0;              /* no empuja el layout */
+  pointer-events: none;   /* el contenedor no recibe clics */
+  z-index: 3;
+}
+.decorative-images img{
+  position: absolute;     /* ahora sí se posicionan */
+  pointer-events: auto;   /* y aceptan clic */
+}
+
+/* Coca-Cola al lado del título, arriba derecha */
+.coca-cola {
+  position: absolute;
+  top: 8%;
+  right: 12%;
+  width: 80px; height: 50px;
+  object-fit: cover;
+  transform: rotate(-15deg);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+.coca-cola:hover { transform: rotate(-15deg) scale(1.1); }
+
+/* Sabritas al lado del título, arriba izquierda */
+.sabritas {
+  position: absolute;
+  top: 8%;
+  left: 12%;
+  width: 80px; height: 50px;
+  object-fit: cover;
+  transform: rotate(15deg);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+.sabritas:hover { transform: rotate(15deg) scale(1.1); }
+
+/* Ferrero Rocher después del subtítulo, izquierda */
+.ferrero {
+  position: absolute;
+  top: 25%;
+  left: 15%;
+  width: 70px; height: 50px;
+  object-fit: cover;
+  transform: rotate(-10deg);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+.ferrero:hover { transform: rotate(-10deg) scale(1.1); }
+
+/* Hamburguesa después del subtítulo, derecha */
+.hamburguesa {
+  position: absolute;
+  top: 25%;
+  right: 15%;
+  width: 70px; height: 50px;
+  object-fit: cover;
+  transform: rotate(10deg);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+.hamburguesa:hover { transform: rotate(10deg) scale(1.1); }
+
+/* Dazai después del mensaje, izquierda, completo */
+.dazai {
+  position: absolute;
+  top: 75%;
+  left: 20%;
+  width: 100px; height: 80px;
+  object-fit: contain;
+  transform: rotate(-5deg);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+.dazai:hover { transform: rotate(-5deg) scale(1.1); }
+
+/* Flores al lado de Dazai, derecha */
+.rosas {
+  position: absolute;
+  top: 75%;
+  right: 20%;
+  width: 80px; height: 70px;
+  object-fit: cover;
+  transform: rotate(5deg);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+.rosas:hover { transform: rotate(5deg) scale(1.1); }
+
+/* ===== IMAGEN PRINCIPAL ===== */
+.main-photo-section {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.photo-main {
+  width: 250px; height: 300px;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: center top;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+}
+.photo-main:hover { transform: scale(1.05); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3); }
+
+/* ===== EFECTOS DE PARTÍCULAS ===== */
+#particles-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.confetti {
+  position: absolute;
+  width: 10px; height: 10px;
+  background: #DC143C;
+  animation: confetti-fall 3s linear infinite;
+}
+.balloon {
+  position: absolute;
+  width: 40px; height: 50px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: balloon-rise 4s ease-in-out infinite;
+}
+.balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -20px; left: 50%;
+  transform: translateX(-50%);
+  width: 2px; height: 20px; background: #8B4513;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+@keyframes balloon-rise {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===== ANIMACIONES SUTILES ===== */
+.hero, .message { transition: all 0.3s ease; }
+.hero:hover .love-title { transform: scale(1.02); }
+.message:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12); }
+
+/* ===== RESPONSIVE PARA IMÁGENES ===== */
+@media (max-width: 768px) {
+  .photo-main { width: 200px; height: 240px; }
+  .coca-cola, .sabritas { width: 60px; height: 40px; }
+  .ferrero, .hamburguesa { width: 55px; height: 40px; }
+  .dazai { width: 80px; height: 65px; }
+  .rosas { width: 65px; height: 55px; }
+}
+@media (max-width: 480px) {
+  .photo-main { width: 180px; height: 220px; }
+  .coca-cola, .sabritas { width: 50px; height: 35px; }
+  .ferrero, .hamburguesa { width: 45px; height: 32px; }
+  .dazai { width: 70px; height: 55px; }
+  .rosas { width: 55px; height: 45px; }
+}
+
+/* ===================== AJUSTES PEDIDOS (PEGAR AL FINAL) ===================== */
+
+/* 1) que las imágenes decorativas estén por encima y sean clicables */
+.decorative-images { z-index: 20; }
+.decorative-images img {
+  position: fixed;        /* mantenemos fixed como usas ahora */
+  pointer-events: auto;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.2));
+  transition: transform .2s ease;
+}
+.decorative-images img:hover { transform: scale(1.05); }
+
+/* 2) FIX drop-cap (H grande) para que no suba la línea */
+.message-text{ overflow: hidden; }
+.message-text::first-letter{ line-height: 1; margin-top: 8px; }
+
+/* ================= POSICIÓN / TAMAÑO DESKTOP ================= */
+
+/* Coca-Cola: más arriba y más a la derecha */
+.coca-cola{
+  top: 62px;        /* sube más, arriba de la T */
+  right: 12px;
+  width: 92px;
+  height: auto;
+}
+
+/* Sabritas: más arriba, junto a la D */
+.sabritas{
+  top: 64px;
+  left: 24px;
+  width: 86px;
+  height: auto;
+}
+
+/* Ferrero: un poco más arriba y más hacia la izquierda (debajo del subtítulo) */
+.ferrero{
+  top: 132px;
+  left: 18px;
+  width: 86px;
+  height: auto;
+}
+
+/* Hamburguesa: súbela para que quede al lado de la M y no toque el título */
+.hamburguesa{
+  top: 132px;
+  right: 36px;
+  width: 96px;
+  height: auto;
+}
+
+/* Dazai (Asai): más pequeño y pegado abajo-izquierda, sin tapar la foto */
+.dazai{
+  width: 90px;
+  height: auto;
+  left: 6px;
+  right: auto;
+  bottom: 14px;
+}
+
+/* Rosas: un poco más hacia la izquierda, junto a la foto */
+.rosas{
+  left: calc(50% + 140px); /* acercadas a la foto */
+  right: auto;
+  bottom: 20px;
+  width: 116px;
+  height: auto;
+}
+
+/* ================= AJUSTES EXTRA PARA TELÉFONO ================= */
+@media (max-width: 430px){
+  .coca-cola{   top: 56px; right: 8px;  width: 78px; }
+  .sabritas{    top: 58px; left: 10px;  width: 78px; }
+  .ferrero{     top: 120px; left: 10px; width: 74px; }   /* más a la izq y no tapa */
+  .hamburguesa{ top: 124px; right: 22px; width: 88px; } /* al lado de la M */
+  .dazai{       width: 78px; left: 6px; bottom: 14px; }
+  .rosas{       left: calc(50% + 120px); width: 112px; }
+}
+
+/* Un poco de margen en pantallas grandes */
+@media (min-width: 992px){
+  .coca-cola{   top: 68px; right: 18px; }
+  .sabritas{    top: 70px; left: 22px; }
+  .ferrero{     top: 138px; left: 20px; }
+  .hamburguesa{ top: 138px; right: 34px; }
+  .rosas{       left: calc(50% + 160px); }
+}
