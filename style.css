@@ -175,96 +175,29 @@ body::after {
   .tagline { font-size: 1rem; margin-bottom: 35px; }
 }
 
-/* las imágenes se pueden clicar (no más bloqueo) */
-.decorative-images{
-  position: relative;
-  width: 100%;
-  height: 0;              /* no empuja el layout */
-  pointer-events: none;   /* el contenedor no recibe clics */
-  z-index: 3;
-}
-.decorative-images img{
-  position: absolute;     /* ahora sí se posicionan */
-  pointer-events: auto;   /* y aceptan clic */
+/* ===== CONTENEDOR DE IMÁGENES DECORATIVAS ===== */
+.decorative-images {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 9999 !important;
 }
 
-/* Coca-Cola al lado del título, arriba derecha */
-.coca-cola {
-  position: absolute;
-  top: 8%;
-  right: 12%;
-  width: 80px; height: 50px;
-  object-fit: cover;
-  transform: rotate(-15deg);
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+.decorative-images img {
+  position: fixed !important;
+  pointer-events: auto !important;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)) !important;
+  transition: transform 0.2s ease !important;
+  z-index: 9999 !important;
+  display: block !important;
 }
-.coca-cola:hover { transform: rotate(-15deg) scale(1.1); }
 
-/* Sabritas al lado del título, arriba izquierda */
-.sabritas {
-  position: absolute;
-  top: 8%;
-  left: 12%;
-  width: 80px; height: 50px;
-  object-fit: cover;
-  transform: rotate(15deg);
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+.decorative-images img:hover {
+  transform: scale(1.05) !important;
 }
-.sabritas:hover { transform: rotate(15deg) scale(1.1); }
-
-/* Ferrero Rocher después del subtítulo, izquierda */
-.ferrero {
-  position: absolute;
-  top: 25%;
-  left: 15%;
-  width: 70px; height: 50px;
-  object-fit: cover;
-  transform: rotate(-10deg);
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-}
-.ferrero:hover { transform: rotate(-10deg) scale(1.1); }
-
-/* Hamburguesa después del subtítulo, derecha */
-.hamburguesa {
-  position: absolute;
-  top: 25%;
-  right: 15%;
-  width: 70px; height: 50px;
-  object-fit: cover;
-  transform: rotate(10deg);
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-}
-.hamburguesa:hover { transform: rotate(10deg) scale(1.1); }
-
-/* Dazai después del mensaje, izquierda, completo */
-.dazai {
-  position: absolute;
-  top: 75%;
-  left: 20%;
-  width: 100px; height: 80px;
-  object-fit: contain;
-  transform: rotate(-5deg);
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-}
-.dazai:hover { transform: rotate(-5deg) scale(1.1); }
-
-/* Flores al lado de Dazai, derecha */
-.rosas {
-  position: absolute;
-  top: 75%;
-  right: 20%;
-  width: 80px; height: 70px;
-  object-fit: cover;
-  transform: rotate(5deg);
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-}
-.rosas:hover { transform: rotate(5deg) scale(1.1); }
 
 /* ===== IMAGEN PRINCIPAL ===== */
 .main-photo-section {
@@ -281,7 +214,7 @@ body::after {
   object-position: center top;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-  border: 3px solid rgba(255, 255, 255, 0.9);
+  border: 3px solid #9370DB; /* Borde morado como en la imagen */
 }
 .photo-main:hover { transform: scale(1.05); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3); }
 
@@ -329,105 +262,331 @@ body::after {
 .hero:hover .love-title { transform: scale(1.02); }
 .message:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12); }
 
+/* ===== POSICIONAMIENTO DE IMÁGENES DECORATIVAS ===== */
+/* RODEANDO LA FOTO CENTRAL - COMPLETAMENTE ESTÁTICAS */
+
+/* Coca-Cola: arriba-izquierda de la foto central */
+.coca-cola {
+  position: fixed !important;
+  bottom: 40vh !important;
+  left: calc(50% - 200px) !important;
+  width: 60px !important;
+  height: 40px !important;
+  transform: rotate(15deg) !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* Sabritas: arriba-derecha de la foto central */
+.sabritas {
+  position: fixed !important;
+  bottom: 40vh !important;
+  left: calc(50% + 140px) !important;
+  width: 60px !important;
+  height: 40px !important;
+  transform: rotate(-15deg) !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* Dazai: centro-izquierda de la foto central */
+.dazai {
+  position: fixed !important;
+  bottom: 30vh !important;
+  left: calc(50% - 200px) !important;
+  width: 50px !important;
+  height: 80px !important;
+  transform: rotate(0deg) !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  display: block !important;
+}
+
+/* Rosas: centro-derecha de la foto central */
+.rosas {
+  position: fixed !important;
+  bottom: 30vh !important;
+  left: calc(50% + 140px) !important;
+  width: 60px !important;
+  height: 50px !important;
+  transform: rotate(0deg) !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  display: block !important;
+}
+
+/* Hamburguesa: abajo-izquierda de la foto central */
+.hamburguesa {
+  position: fixed !important;
+  bottom: 20vh !important;
+  left: calc(50% - 200px) !important;
+  width: 60px !important;
+  height: 40px !important;
+  transform: rotate(15deg) !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* Ferrero: abajo-derecha de la foto central */
+.ferrero {
+  position: fixed !important;
+  bottom: 20vh !important;
+  left: calc(50% + 140px) !important;
+  width: 60px !important;
+  height: 40px !important;
+  transform: rotate(0deg) !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
 /* ===== RESPONSIVE PARA IMÁGENES ===== */
 @media (max-width: 768px) {
   .photo-main { width: 200px; height: 240px; }
-  .coca-cola, .sabritas { width: 60px; height: 40px; }
-  .ferrero, .hamburguesa { width: 55px; height: 40px; }
-  .dazai { width: 80px; height: 65px; }
-  .rosas { width: 65px; height: 55px; }
+  .coca-cola, .sabritas { 
+    width: 50px !important; 
+    height: 35px !important; 
+    top: 450px !important;
+  }
+  .coca-cola { left: calc(50% - 130px) !important; }
+  .sabritas { left: calc(50% + 80px) !important; }
+  
+  .ferrero, .hamburguesa { 
+    width: 50px !important; 
+    height: 35px !important; 
+    top: 600px !important;
+  }
+  .hamburguesa { left: calc(50% - 130px) !important; }
+  .ferrero { left: calc(50% + 80px) !important; }
+  
+  .dazai { 
+    width: 40px !important; 
+    height: 65px !important; 
+    top: 520px !important;
+    left: calc(50% - 110px) !important;
+  }
+  .rosas { 
+    width: 50px !important; 
+    height: 40px !important; 
+    top: 520px !important;
+    left: calc(50% + 60px) !important;
+  }
 }
+
 @media (max-width: 480px) {
   .photo-main { width: 180px; height: 220px; }
-  .coca-cola, .sabritas { width: 50px; height: 35px; }
-  .ferrero, .hamburguesa { width: 45px; height: 32px; }
-  .dazai { width: 70px; height: 55px; }
-  .rosas { width: 55px; height: 45px; }
+  .coca-cola, .sabritas { 
+    width: 45px !important; 
+    height: 30px !important; 
+    top: 400px !important;
+  }
+  .coca-cola { left: calc(50% - 100px) !important; }
+  .sabritas { left: calc(50% + 55px) !important; }
+  
+  .ferrero, .hamburguesa { 
+    width: 45px !important; 
+    height: 30px !important; 
+    top: 550px !important;
+  }
+  .hamburguesa { left: calc(50% - 100px) !important; }
+  .ferrero { left: calc(50% + 55px) !important; }
+  
+  .dazai { 
+    width: 35px !important; 
+    height: 55px !important; 
+    top: 470px !important;
+    left: calc(50% - 80px) !important;
+  }
+  .rosas { 
+    width: 45px !important; 
+    height: 35px !important; 
+    top: 470px !important;
+    left: calc(50% + 35px) !important;
+  }
 }
 
-/* ===================== AJUSTES PEDIDOS (PEGAR AL FINAL) ===================== */
+/* ===== FIX DROP-CAP ===== */
+.message-text { overflow: hidden; }
+.message-text::first-letter { line-height: 1; margin-top: 8px; }
 
-/* 1) que las imágenes decorativas estén por encima y sean clicables */
-.decorative-images { z-index: 20; }
-.decorative-images img {
-  position: fixed;        /* mantenemos fixed como usas ahora */
-  pointer-events: auto;
+/* ===== FORZAR IMÁGENES FUERA DEL TEXTO ===== */
+.coca-cola, .sabritas, .ferrero, .hamburguesa, .dazai, .rosas {
+  position: fixed !important;
+  display: block !important;
+  float: none !important;
+  clear: both !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  text-align: left !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+  z-index: 9999 !important;
+}
+/* Apaga el contenedor viejo de decoraciones para evitar duplicados */
+.decorative-images { display: none !important; }
+
+/* ===== Foto + decoraciones alrededor (sin fixed) ===== */
+.main-photo-section {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 44px;
+}
+
+/* Rejilla que rodea la foto */
+.photo-ring {
+  display: grid;
+  grid-template-columns: 120px 120px 260px 120px 120px;
+  grid-template-rows:    100px  24px  auto   24px  120px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Foto central */
+.photo-ring .photo-main {
+  grid-column: 3;           /* centro */
+  grid-row: 2 / span 3;     /* ocupa 2,3,4 */
+  width: 260px;
+  height: 320px;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: center top;
+  box-shadow: 0 12px 30px rgba(0,0,0,.2);
+  border: 3px solid #9370DB;  /* como ya tienes */
+}
+
+/* Todas las decoraciones (ya NO fixed) */
+.photo-ring .ring {
   filter: drop-shadow(0 4px 8px rgba(0,0,0,.2));
+  user-select: none;
+  pointer-events: auto;
   transition: transform .2s ease;
 }
-.decorative-images img:hover { transform: scale(1.05); }
+.photo-ring .ring:hover { transform: scale(1.05); }
 
-/* 2) FIX drop-cap (H grande) para que no suba la línea */
-.message-text{ overflow: hidden; }
-.message-text::first-letter{ line-height: 1; margin-top: 8px; }
+/* Posiciones alrededor de la foto (como tu referencia) */
+.ring.cola     { grid-column: 2; grid-row: 1; width: 80px;  transform: rotate(-12deg); }
+.ring.sabritas { grid-column: 4; grid-row: 1; width: 96px;  transform: rotate(10deg);  }
 
-/* ================= POSICIÓN / TAMAÑO DESKTOP ================= */
+.ring.dazai    { grid-column: 1; grid-row: 3; width: 110px; }
+.ring.rosas    { grid-column: 5; grid-row: 3; width: 140px; }
 
-/* Coca-Cola: más arriba y más a la derecha */
-.coca-cola{
-  top: 62px;        /* sube más, arriba de la T */
-  right: 12px;
-  width: 92px;
-  height: auto;
+.ring.burguer  { grid-column: 2; grid-row: 5; width: 140px; }
+.ring.ferrero  { grid-column: 4; grid-row: 5; width: 130px; }
+
+/* ===== Responsive ===== */
+@media (max-width: 480px){
+  .photo-ring{
+    grid-template-columns: 80px 80px 200px 80px 80px;
+    grid-template-rows:    80px 16px auto 16px 90px;
+    gap: 8px;
+  }
+  .photo-ring .photo-main{ width: 200px; height: 260px; }
+
+  .ring.cola{     width: 60px; }
+  .ring.sabritas{ width: 72px; }
+  .ring.dazai{    width: 88px; }
+  .ring.rosas{    width: 110px; }
+  .ring.burguer{  width: 110px; }
+  .ring.ferrero{  width: 100px; }
 }
 
-/* Sabritas: más arriba, junto a la D */
-.sabritas{
-  top: 64px;
-  left: 24px;
-  width: 86px;
-  height: auto;
-}
-
-/* Ferrero: un poco más arriba y más hacia la izquierda (debajo del subtítulo) */
-.ferrero{
-  top: 132px;
-  left: 18px;
-  width: 86px;
-  height: auto;
-}
-
-/* Hamburguesa: súbela para que quede al lado de la M y no toque el título */
-.hamburguesa{
-  top: 132px;
-  right: 36px;
-  width: 96px;
-  height: auto;
-}
-
-/* Dazai (Asai): más pequeño y pegado abajo-izquierda, sin tapar la foto */
-.dazai{
-  width: 90px;
-  height: auto;
-  left: 6px;
-  right: auto;
-  bottom: 14px;
-}
-
-/* Rosas: un poco más hacia la izquierda, junto a la foto */
-.rosas{
-  left: calc(50% + 140px); /* acercadas a la foto */
-  right: auto;
-  bottom: 20px;
-  width: 116px;
-  height: auto;
-}
-
-/* ================= AJUSTES EXTRA PARA TELÉFONO ================= */
-@media (max-width: 430px){
-  .coca-cola{   top: 56px; right: 8px;  width: 78px; }
-  .sabritas{    top: 58px; left: 10px;  width: 78px; }
-  .ferrero{     top: 120px; left: 10px; width: 74px; }   /* más a la izq y no tapa */
-  .hamburguesa{ top: 124px; right: 22px; width: 88px; } /* al lado de la M */
-  .dazai{       width: 78px; left: 6px; bottom: 14px; }
-  .rosas{       left: calc(50% + 120px); width: 112px; }
-}
-
-/* Un poco de margen en pantallas grandes */
 @media (min-width: 992px){
-  .coca-cola{   top: 68px; right: 18px; }
-  .sabritas{    top: 70px; left: 22px; }
-  .ferrero{     top: 138px; left: 20px; }
-  .hamburguesa{ top: 138px; right: 34px; }
-  .rosas{       left: calc(50% + 160px); }
+  .photo-ring{
+    grid-template-columns: 150px 150px 320px 150px 150px;
+    grid-template-rows:    110px 30px auto 30px 140px;
+  }
+  .photo-ring .photo-main{ width: 320px; height: 420px; }
+
+  .ring.cola{     width: 94px; }
+  .ring.sabritas{ width: 112px; }
+  .ring.dazai{    width: 130px; }
+  .ring.rosas{    width: 170px; }
+  .ring.burguer{  width: 170px; }
+  .ring.ferrero{  width: 160px; }
+}
+
+/* ===== RODEO ESTÁTICO - POSICIONES EXACTAS ===== */
+/* Basado en las posiciones perfectas de Coca-Cola y Hamburguesa */
+
+/* Sabritas: arriba-derecha de la foto central */
+.sabritas{
+  position: fixed !important;
+  top: 400px !important;
+  left: calc(50% + 120px) !important;
+  width: 60px !important;
+  height: 40px !important;
+  transform: rotate(-15deg) !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* Dazai: centro-izquierda de la foto central */
+.dazai{
+  position: fixed !important;
+  top: 500px !important;
+  left: calc(50% - 180px) !important;
+  width: 50px !important;
+  height: 80px !important;
+  transform: rotate(0deg) !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  display: block !important;
+}
+
+/* Rosas: centro-derecha de la foto central */
+.rosas{
+  position: fixed !important;
+  top: 500px !important;
+  left: calc(50% + 120px) !important;
+  width: 60px !important;
+  height: 50px !important;
+  transform: rotate(0deg) !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  display: block !important;
+}
+
+/* Ferrero: abajo-derecha de la foto central */
+.ferrero{
+  position: fixed !important;
+  top: 600px !important;
+  left: calc(50% + 120px) !important;
+  width: 60px !important;
+  height: 40px !important;
+  transform: rotate(0deg) !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* ===== Responsive (móvil chico) ===== */
+@media (max-width: 480px){
+  .sabritas { 
+    top: 400px !important;
+    left: calc(50% + 100px) !important;  
+    width: 45px !important; 
+    height: 30px !important;
+  }
+  .dazai { 
+    top: 500px !important;
+    left: calc(50% - 120px) !important; 
+    width: 35px !important; 
+    height: 55px !important;
+  }
+  .rosas { 
+    top: 500px !important;
+    left: calc(50% + 80px) !important; 
+    width: 45px !important; 
+    height: 35px !important;
+  }
+  .ferrero { 
+    top: 600px !important;
+    left: calc(50% + 100px) !important;  
+    width: 45px !important; 
+    height: 30px !important;
+  }
 }
