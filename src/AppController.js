@@ -14,7 +14,7 @@ export default class AppController {
   constructor(rootSelector) {
     this.root = document.querySelector(rootSelector);
     this.model = new DayModel();
-    this.service = new DayService("2025-09-01"); // fecha de inicio (día 1)
+    this.service = new DayService("2025-10-01"); // fecha de inicio (día 1)
     console.log("[AppController] creado");
   }
 
